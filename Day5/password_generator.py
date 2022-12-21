@@ -2,7 +2,7 @@
 import random
 import string
 
-letters = list(string.ascii_lowercase + string.ascii_uppercase)
+letters = list(string.ascii_letters)
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
