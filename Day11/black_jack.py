@@ -10,7 +10,18 @@ def deal_cards():
     return card
 
 
+def calculate_score(cards):
+    pass
+
+
 def play_game():
+    user_cards = []
+    computer_cards = []
+    is_game_over = False
+    pass
+
+
+def compare():
     pass
 
 
