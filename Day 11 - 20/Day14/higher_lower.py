@@ -5,7 +5,7 @@ from game_data import data
 from replit import clear
 
 
-def random_data_accounts():
+def random_accounts():
     return random.choice(data)
 
 
@@ -15,17 +15,35 @@ def format_data(accounts):
     country = data['country']
     return f"{name}, {description}, from {country}"
 
+
+def check_answer(guess, followers_a, followers_b):
+    if followers_a > followers_b:
+        return guess == "a"
+    else:
+        return guess == "b"
+
+
 def run_game():
 
-
+    score = 0
+    game_should_continue = True
+    account_a = random_accounts()
+    account_b = random_accounts()
 
     print(logo)
 
-    print(f"Compare A: {name}, {description}, from {country}")
+    while game_should_continue:
+        account_a = account_b
+        account_b = random_accounts()
 
-    print(vs)
+        while account_a == account_b:
+            account_b = random_accounts()
 
-    print(f"Against B: {name}, {description}, from {country}")
+            print(f"Compare A: {format_data(account_a)}")
+
+            print(vs)
+
+            print(f"Against B: {format_data(account_b)}")
 
 
-clear()
+run_game()
