@@ -10,9 +10,9 @@ def random_accounts():
 
 
 def format_data(accounts):
-    name = data['name']
-    description = data['description']
-    country = data['country']
+    name = accounts['name']
+    description = accounts['description']
+    country = accounts['country']
     return f"{name}, {description}, from {country}"
 
 
