@@ -1,6 +1,6 @@
 
 from turtle import Turtle, Screen
-import Time
+import time
 import random
 
 
@@ -28,21 +28,15 @@ for position in starting_position:
     new_segment.goto(position)
     segments.append(new_segment)
 
-screen.update()
-
 while game_is_on:
-    for seg in segments:
-        seg.forward(20)
+    screen.update()
+    time.sleep(0.1)
 
-
-
-def turn_left():
-    snake.left(90)
-
-
-def turn_right():
-    snake.right(90)
-
+    for seg_num in range(len(segments)):
+        new_x = segments[seg_num - 1].xcor()
+        new_y = segments[seg_num - 1].ycor()
+        segments[seg_num].goto(new_x, new_y)
+    segments[0].forward(20)
 
 
 screen.exitonclick()
