@@ -23,3 +23,5 @@ starting_position = [(0, 0),(-20, 0),(-40, 0)]
 while game_is_on:
     screen.update()
     time.sleep(0.1)
+
+    snake.move()

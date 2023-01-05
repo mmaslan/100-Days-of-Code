@@ -2,6 +2,7 @@
 from turtle import Turtle
 
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
+MOVE_DISTANCE = 20
 
 
 class Snake:
@@ -17,11 +18,22 @@ class Snake:
             new_segment.penup()
             new_segment.goto(position)
             self.segments.append(new_segment)
-        self.segments.append(new_segment)
 
     def move(self):
         for seg_num in range(len(self.segments), 0, -1):
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
-        self.segments[0].forward(20)
+        self.segments[0].forward(MOVE_DISTANCE)
+
+    def up(self):
+        pass
+
+    def down(self):
+        pass
+
+    def left(self):
+        pass
+
+    def right(self):
+        pass
