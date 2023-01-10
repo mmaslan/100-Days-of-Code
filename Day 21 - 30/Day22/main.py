@@ -17,10 +17,11 @@ ball = Ball()
 scoreboard = Scoreboard()
 
 screen.listen()
-screen.onkey(r_paddle.go_up(), "Up")
-screen.onkey(r_paddle.go_down(), "Down")
-screen.onkey(l_paddle.go_up(), "w")
-screen.onkey(l_paddle.go_down(), "s")
+screen.onkey(r_paddle.go_up, "Up")
+screen.onkey(r_paddle.go_down, "Down")
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
+
 
 game_is_on = True
 while game_is_on:
@@ -36,11 +37,11 @@ while game_is_on:
 
     if ball.xcor() > 380:
         ball.reset_position()
-        r_score += 1
+        scoreboard.l_point()
 
     if ball.xcor() < -380:
         ball.reset_position()
-        l_score += 1
+        scoreboard.r_point()
 
 
 screen.exitonclick()
