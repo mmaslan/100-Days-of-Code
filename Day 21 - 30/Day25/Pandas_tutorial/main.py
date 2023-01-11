@@ -53,7 +53,7 @@ data = pandas.read_csv("weather_data.csv")
 
 # Get data in Row
 # print(data[data.day == "Monday"])
-# print(data[data.temp == data.temp.max()])\
+# print(data[data.temp == data.temp.max()])
 
 # Extract data
 # monday = data[data.day == "Monday"]
