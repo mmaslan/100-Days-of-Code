@@ -27,5 +27,9 @@ def button_clicked():
 button = Button(text="Click me", command=button_clicked)
 button.pack()
 
+entry = Entry(width=30)
+entry.insert(END, string="Some text to begin with")
+print(entry.get())
+entry.pack()
 
 window.mainloop()
