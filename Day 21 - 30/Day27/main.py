@@ -16,13 +16,10 @@ input = Entry(width=10, )
 input.pack()
 
 
-def button_converter(km=1.6):
-    miles = input.get()
-    if miles == int:
-        result = float(miles) * km
-        my_label.config(text=f"{miles} is {result} km.")
-    else:
-        my_label.config(text=f"Please enter correct number.")
+def button_converter():
+    miles = float(input.get())
+    result = float(miles) * 1.609
+    my_label.config(text=f"{miles} is {result} km.")
 
 
 button = Button(text="Convert", command=button_converter)
