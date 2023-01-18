@@ -1,8 +1,9 @@
 
 from tkinter import *
 from tkinter import messagebox
-import random
+from random import choice, randint, shuffle
 import string
+import pyperclip
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -13,30 +14,17 @@ def generate():
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-    number_of_letters = random.randint(8, 10)
-    number_of_numbers = random.randint(2, 4)
-    number_of_symbols = random.randint(2, 4)
+    password_letters = [choice(letters) for _ in range(randint(8, 10))]
+    password_numbers = [choice(numbers) for _ in range(randint(2, 4))]
+    password_symbols = [choice(symbols) for _ in range(randint(2, 4))]
 
-    password_list = []
+    password_list = password_letters + password_numbers + password_symbols
 
-    for char in range(1, number_of_letters + 1):
-        password_list.append(random.choice(letters))
+    shuffle(password_list)
 
-    for char in range(1, number_of_numbers + 1):
-        password_list.append(random.choice(numbers))
-
-    for char in range(1, number_of_symbols + 1):
-        password_list.append(random.choice(symbols))
-
-    random.shuffle(password_list)
-
-    for char in password_list:
-        password += char
-
-    message = f"Here is your password: {password}"
-    print(message)
-
-    pass
+    password = "".join(password_list)
+    pass_entry.insert(0, password)
+    pyperclip.copy(password)
 
 
 def add():
@@ -49,7 +37,7 @@ def add():
     else:
         is_ok = messagebox.askokcancel(title=website, message="Data uploaded to text_file")
         if is_ok:
-            with open("data.txt", "w") as data_file:
+            with open("data.txt", "a") as data_file:
                 data_file.write(f"Website: {website} / email: {email} / password: {password}")
                 web_entry.delete(0, END)
                 pass_entry.delete(0, END)
@@ -83,7 +71,7 @@ pass_entry = Entry(width=21)
 pass_entry.grid(row=3, column=1)
 
 
-gen_button = Button(text="Generate Password")
+gen_button = Button(text="Generate Password", command=generate)
 gen_button.grid(row=3, column=2)
 add_button = Button(text="Add", width=36, command=add)
 add_button.grid(row=4, column=1, columnspan=2)
