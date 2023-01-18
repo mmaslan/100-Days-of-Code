@@ -1,5 +1,6 @@
 
 from tkinter import *
+from tkinter import messagebox
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
@@ -11,7 +12,19 @@ def generate():
 
 
 def add():
-    pass
+    website = web_entry.get()
+    email = email_entry.get()
+    password = pass_entry.get()
+
+    if len(website) == 0 or len(password) == 0:
+        messagebox.showinfo(title="Error", text="Perhaps you typed wrong website or password")
+    else:
+        messagebox.askokcancel(title=website, message="Data uploaded to text_file")
+        # is_ok = messagebox.askokcancel(title=website, message="Data uploaded to text_file")
+        # if is_ok:
+        with open("data.txt", "w") as data_file:
+            data_file.write(f"Website: {website} / email: {email} / password: {password}")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -45,7 +58,7 @@ pass_entry.grid(row=3, column=1)
 
 gen_button = Button(text="Generate Password")
 gen_button.grid(row=3, column=2)
-add_button = Button(text="Add", width=36)
+add_button = Button(text="Add", width=36, command=add)
 add_button.grid(row=4, column=1, columnspan=2)
 
 window.mainloop()
