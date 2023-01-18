@@ -1,14 +1,42 @@
 
 from tkinter import *
 from tkinter import messagebox
+import random
+import string
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def generate():
-    pass
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
+    letters = list(string.ascii_letters)
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+
+    number_of_letters = random.randint(8, 10)
+    number_of_numbers = random.randint(2, 4)
+    number_of_symbols = random.randint(2, 4)
+
+    password_list = []
+
+    for char in range(1, number_of_letters + 1):
+        password_list.append(random.choice(letters))
+
+    for char in range(1, number_of_numbers + 1):
+        password_list.append(random.choice(numbers))
+
+    for char in range(1, number_of_symbols + 1):
+        password_list.append(random.choice(symbols))
+
+    random.shuffle(password_list)
+
+    for char in password_list:
+        password += char
+
+    message = f"Here is your password: {password}"
+    print(message)
+
+    pass
 
 
 def add():
@@ -19,14 +47,13 @@ def add():
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Error", text="Perhaps you typed wrong website or password")
     else:
-        messagebox.askokcancel(title=website, message="Data uploaded to text_file")
-        # is_ok = messagebox.askokcancel(title=website, message="Data uploaded to text_file")
-        # if is_ok:
-        with open("data.txt", "w") as data_file:
-            data_file.write(f"Website: {website} / email: {email} / password: {password}")
+        is_ok = messagebox.askokcancel(title=website, message="Data uploaded to text_file")
+        if is_ok:
+            with open("data.txt", "w") as data_file:
+                data_file.write(f"Website: {website} / email: {email} / password: {password}")
+                web_entry.delete(0, END)
+                pass_entry.delete(0, END)
 
-
-# ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
 window.title("Password Manager")
