@@ -5,8 +5,8 @@ import random
 now = dt.datetime.now()
 weekday = now.weekday()
 
-my_email = "generic@gmail.com"
-password = "genericpassword"
+MY_EMAIL = "generic@gmail.com"
+PASSWORD = "genericpassword"
 
 
 random_quote = random.choice(list(open("quotes.txt", "r")))
@@ -14,11 +14,11 @@ random_quote = random.choice(list(open("quotes.txt", "r")))
 if weekday == 0:
     with smtplib.SMTP("smtp.gmail.com") as connections:
         connections.starttls()
-        connections.login(user=my_email, password=password)
+        connections.login(MY_EMAIL, PASSWORD)
         connections.sendmail(
-            from_addr=my_email,
-            to_addrs="generic@yahoo.com",
-            msg=f"Subject:Hello\n\n{random_quote}."
+            from_addr=MY_EMAIL,
+            to_addrs=MY_EMAIL,
+            msg=f"Subject:Monday motivation:\n\n{random_quote}."
         )
         connections.close()
 
