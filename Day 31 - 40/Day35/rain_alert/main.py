@@ -9,7 +9,7 @@ OMW_Endpoint = 'http://api.openweathermap.org/data/2.5/onecall'
 api_key = os.environ['OPEN_WEATHER_KEY']
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
 auth_token = os.environ['TWILIO_AUTH_TOKEN']
-twilio_phone_number = os.environ['TWILIO_NUMBER']
+twilio_phone_number = os.environ['TWILIO_GENERATED_NUMBER']
 personal_number = os.environ['TWILIO_PERSONAL_NUMBER']
 
 weather_params = {
@@ -34,9 +34,9 @@ for hour_data in weather_slice:
 if will_rain:
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-        body="Bring an umbrella.",
+        body="It's going to rain today. Bring an umbrella.",
         from_=f'{twilio_phone_number}',
         to=f'{personal_number}'
     )
 
-    print(message.sid)
+    print(message.status)
