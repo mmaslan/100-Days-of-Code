@@ -1,7 +1,5 @@
 import os
-import json
 import requests
-import datetime
 from twilio.rest import Client
 
 OMW_Endpoint = 'http://api.openweathermap.org/data/2.5/onecall'
