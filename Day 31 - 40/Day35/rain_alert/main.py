@@ -5,10 +5,12 @@ import datetime
 from twilio.rest import Client
 
 OMW_Endpoint = 'http://api.openweathermap.org/data/2.5/onecall'
-api_key = '588237482f885cef420a4fa9796cd1b9'
+
+api_key = os.environ['OPEN_WEATHER_KEY']
 account_sid = os.environ['TWILIO_ACCOUNT_SID']
 auth_token = os.environ['TWILIO_AUTH_TOKEN']
-client = Client(account_sid, auth_token)
+twilio_phone_number = os.environ['TWILIO_NUMBER']
+personal_number = os.environ['TWILIO_PERSONAL_NUMBER']
 
 weather_params = {
     'lat': 54.356030,
@@ -30,4 +32,11 @@ for hour_data in weather_slice:
         will_rain = True
 
 if will_rain:
-    print("Bring an umbrella.")
+    client = Client(account_sid, auth_token)
+    message = client.messages.create(
+        body="Bring an umbrella.",
+        from_=f'{twilio_phone_number}',
+        to=f'{personal_number}'
+    )
+
+    print(message.sid)
