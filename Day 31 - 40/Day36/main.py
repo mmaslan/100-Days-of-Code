@@ -29,9 +29,11 @@ difference = abs(float(yesterday_closing_price)) - float(day_before_yesterday_cl
 
 diff_percent = difference / float(yesterday_closing_price) * 100
 
-if diff_percent > 4:
+if diff_percent > 1:
     news_params = {
         "apiKey": NEWS_API_KEY,
         "qInTitle": COMPANY_NAME,
     }
     news_response = requests.get(NEWS_ENDPOINT, params=news_params)
+    articles = news_response.json()["articles"]
+    three_articles = articles[:3]
