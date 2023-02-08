@@ -11,5 +11,12 @@ planets = sns.load_dataset("planets")
 
 print(tips)
 
-spread = sns.scatterplot(x="tip", y="total_bill", data=tips)
+# spread = sns.scatterplot(x="tip", y="total_bill", data=tips, hue="day", size="size", palette="YlGnBu")
+
+# spread2 = sns.histplot(tips['tip'], kde=True, bins=15)
+
+# spread3 = sns.distplot(tips['tip'], kde=True, bins=15)
+
+spread4 = sns.barplot(x='sex', y='tip', data=tips, palette="YlGnBu")
+
 plt.show()
