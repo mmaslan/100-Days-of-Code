@@ -40,7 +40,7 @@ else:
 
 diff_percent = difference / float(yesterday_closing_price) * 100
 
-if diff_percent > 1:
+if abs(diff_percent) > 1:
     news_params = {
         "apiKey": NEWS_API_KEY,
         "qInTitle": COMPANY_NAME,
@@ -48,7 +48,7 @@ if diff_percent > 1:
     news_response = requests.get(NEWS_ENDPOINT, params=news_params)
     articles = news_response.json()["articles"]
     three_articles = articles[:3]
-    formatted_article_list = [f"Headline: {article['title']}. \nBrief: {article['description']}" for article in three_articles]
+    formatted_article_list = [f"{STOCK_NAME}: {up_down}{diff_percent}%\n{article['title']}. \nBrief: {article['description']}" for article in three_articles]
 
     client = Client(TWILIO_SID, TWILIO_AUTH)
     for article in formatted_article_list:
