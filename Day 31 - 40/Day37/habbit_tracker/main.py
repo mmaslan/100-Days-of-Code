@@ -33,3 +33,12 @@ headers = {
 requests.post(url=graph_endpoint, json=graph_config, headers=headers)
 
 pixel_creator_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+
+pixel_data = {
+    "data": 20230510,
+    "quantity": "9.74",
+
+}
+
+response = requests.post(url=pixel_creator_endpoint, json=pixel_data, headers=headers)
+print(response)
